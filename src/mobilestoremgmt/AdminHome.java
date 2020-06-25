@@ -8,7 +8,12 @@ package mobilestoremgmt;
 
 import DB.DBConnection;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.util.Vector;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,14 +24,23 @@ import javax.swing.table.DefaultTableModel;
 public class AdminHome extends javax.swing.JFrame 
 {
     String curruser=LoginPage.cuser;
-
+    private BufferedImage img;
     /**
      * Creates new form AdminHome
      */
     public AdminHome() {
         initComponents();
         reset();
+        try {
+            //img = ImageIO.read(new URL("https://pin.it/7026r7V"));
+            img=ImageIO.read(getClass().getResource("/img/taylor-leopold-fwsXlkNkwhI-unsplash.jpg"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +52,14 @@ public class AdminHome extends javax.swing.JFrame
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            @Override
+            protected void paintComponent(Graphics grphcs) {
+                super.paintComponent(grphcs);
+                grphcs.drawImage(img, 0, 0, null);
+            }
+        }
+        ;
         loginHistory = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();

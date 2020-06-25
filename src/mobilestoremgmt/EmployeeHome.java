@@ -48,8 +48,11 @@ package mobilestoremgmt;
 import java.text.SimpleDateFormat;  
 import java.util.Date; 
 import DB.DBConnection;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.imageio.ImageIO;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -58,10 +61,19 @@ public class EmployeeHome extends javax.swing.JFrame
     String curruser=LoginPage.cuser;
     boolean redirect_from_ami=false;
     boolean redirect_from_aai=false;
+    
+    BufferedImage img;
     public EmployeeHome() 
     {
         initComponents();
         initiate();
+        try {
+            //img = ImageIO.read(new URL("https://pin.it/7026r7V"));
+            img=ImageIO.read(getClass().getResource("/img/754650.jpg"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -69,7 +81,13 @@ public class EmployeeHome extends javax.swing.JFrame
 
         jTextField64 = new javax.swing.JTextField();
         jToolBar1 = new javax.swing.JToolBar();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            @Override
+            protected void paintComponent(Graphics grphcs) {
+                super.paintComponent(grphcs);
+                grphcs.drawImage(img, 0, 0, null);
+            }
+        };
         AddMobInfo = new javax.swing.JInternalFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -361,7 +379,6 @@ public class EmployeeHome extends javax.swing.JFrame
         jComboBox12 = new javax.swing.JComboBox();
         jButton25 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -2329,9 +2346,6 @@ public class EmployeeHome extends javax.swing.JFrame
         );
 
         jDesktopPane1.add(UpdateAccInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 740, 610));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/550541.jpg"))); // NOI18N
-        jDesktopPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 840));
 
         jMenu2.setText("File");
 
@@ -4584,7 +4598,6 @@ public void cp_submit()
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
